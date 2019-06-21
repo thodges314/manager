@@ -21,6 +21,7 @@ class LoginForm extends Component {
 
 	render() {
 		const {placeholderEmail, placeholderPassword} = this.state
+		const {email, password} = this.props
 		return (
 			<Card>
 				<CardSection>
@@ -29,6 +30,7 @@ class LoginForm extends Component {
 						onChangeText={this.onEmailChange}
 						onFocus={()=>this.setState({placeholderEmail: ''})}
 						placeholder={placeholderEmail}
+						value={email}
 					/>
 				</CardSection>
 				<CardSection>
@@ -38,6 +40,7 @@ class LoginForm extends Component {
 						onFocus={()=>this.setState({placeholderPassword: ''})}
 						placeholder={placeholderPassword}
 						secureTextEntry
+						value={password}
 					/>
 				</CardSection>
 				<CardSection>
@@ -50,9 +53,14 @@ class LoginForm extends Component {
 	}
 }
 
+const mapStateToProps =state =>  ({
+	email: state.auth.email,
+	password: state.auth.password
+})
+
 const mapDispatchToProps = {
 	emailChanged,
 	passwordChanged
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
