@@ -20,6 +20,7 @@ class LoginForm extends Component {
 				<CardSection>
 					<Input
 						label="password"
+						onFocus={()=>this.setState({placeholderPassword: ''})}
 						placeholder={placeholderPassword}
 						secureTextEntry
 					/>
