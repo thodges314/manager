@@ -40,11 +40,11 @@ class LoginForm extends Component {
 				</CardSection>
 				<CardSection>
 					<Input
-						label="password"
+						label='password'
+						obfuscate
 						onChangeText={this.onPasswordChange}
 						onFocus={()=>this.setState({placeholderPassword: ''})}
 						placeholder={placeholderPassword}
-						secureTextEntry
 						value={password}
 					/>
 				</CardSection>
