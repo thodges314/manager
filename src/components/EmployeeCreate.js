@@ -7,7 +7,7 @@ import {Card, CardSection, Input, Button} from './common'
 class EmployeeCreate extends Component {
 	onButtonPress = () => {
 		const {employeeCreate, empName, shift, telephoneNumber} = this.props
-		employeeCreate({empName, shift, telephoneNumber})
+		employeeCreate({empName: (empName || 'Jane'), shift: (shift || 'Monday'), telephoneNumber:(telephoneNumber || '(###)###-####')})
 	}
 	render () {
 		const {employeeUpdate, empName, shift, telephoneNumber} = this.props
