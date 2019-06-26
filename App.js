@@ -8,7 +8,7 @@ import Router from './src/Router'
 
 class App extends Component {
   componentDidMount() {
-    console.ignoredYellowBox=['Setting A Timer']
+    console.ignoredYellowBox=['Setting a timer']
     const firebaseConfig = {
       apiKey: "AIzaSyBo3c5dSXPYEriM_vZQ39plfinjfUjA-4I",
       authDomain: "manager-2-a1995.firebaseapp.com",
