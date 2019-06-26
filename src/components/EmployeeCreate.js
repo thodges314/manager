@@ -1,12 +1,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Picker, StyleSheet, Text, View} from 'react-native'
-import {employeeUpdate} from '../actions'
+import {employeeCreate, employeeUpdate} from '../actions'
 import {Card, CardSection, Input, Button} from './common'
 
 class EmployeeCreate extends Component {
+	onButtonPress = () => {
+		const {employeeCreate, empName, shift, telephoneNumber} = this.props
+		employeeCreate({empName, shift, telephoneNumber})
+	}
 	render () {
 		const {employeeUpdate, empName, shift, telephoneNumber} = this.props
+		const {onButtonPress} = this
 		return (
 			<Card>
 				<CardSection>
@@ -33,18 +38,18 @@ class EmployeeCreate extends Component {
 							style={{flex: 1}}
 							onValueChange={value => employeeUpdate({prop: 'shift', value})}
 						>
-							<Picker.item label="Monday" value="Monday" />
-							<Picker.item label="Tuesday" value="Tuesday" />
-							<Picker.item label="Wednesday" value="Wednesday" />
-							<Picker.item label="Thursday" value="Thursday" />
-							<Picker.item label="Friday" value="Friday" />
-							<Picker.item label="Saturday" value="Saturday" />
-							<Picker.item label="Sunday" value="Sunday" />
+							<Picker.Item label='Monday' value='Monday' />
+							<Picker.Item label='Tuesday' value='Tuesday' />
+							<Picker.Item label='Wednesday' value='Wednesday' />
+							<Picker.Item label='Thursday' value='Thursday' />
+							<Picker.Item label='Friday' value='Friday' />
+							<Picker.Item label='Saturday' value='Saturday' />
+							<Picker.Item label='Sunday' value='Sunday' />
 						</Picker>
 					</View>
 				</CardSection>
 				<CardSection>
-					<Button>create</Button>
+					<Button onPress={onButtonPress}>create</Button>
 				</CardSection>
 			</Card>
 		)
@@ -63,4 +68,9 @@ const mapStateToProps = (state) => {
 	return {empName, telephoneNumber, shift}
 }
 
-export default connect(mapStateToProps, {employeeUpdate})(EmployeeCreate)
+const mapDispatchToProps = {
+	employeeCreate,
+	employeeUpdate
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeCreate)

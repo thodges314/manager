@@ -6,3 +6,7 @@ export const employeeUpdate = ({prop, value}) => {
 		payload: {prop, value}
 	}
 }
+
+export const employeeCreate = ({empName, shift, telephoneNumber})=> {
+	console.log(empName, shift, telephoneNumber)
+}

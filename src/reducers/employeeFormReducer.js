@@ -1,6 +1,10 @@
 import {EMPLOYEE_UPDATE} from '../constants/types/'
 
-const INITIAL_STATE={}
+const INITIAL_STATE={
+	empName: '',
+	shift: '',
+	telephoneNumber: ''
+}
 
 export default (state = INITIAL_STATE, action) => {
 	console.log(action)
