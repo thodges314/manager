@@ -17,7 +17,6 @@ class EmployeeList extends Component{
 	render() {
 		const {employees} = this.props
 		const {renderItem} = this
-		console.log(employees)
 		return <FlatList data={employees} renderItem={renderItem} keyExtractor={(employee, index) => index.toString()} />
 	}
 }

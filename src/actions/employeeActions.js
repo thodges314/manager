@@ -23,7 +23,7 @@ export const employeeCreate = ({empName, shift, telephoneNumber})=> {
 export const employeesFetch = () => {
 	const {currentUser} = firebase.auth()
 	return (dispatch) => {
-		firebase.database().ref(`/users/${currentUser.uid}/employees`)
+		firebase.database().ref(`/users/${currentUser.uid}/employees`)	// this will always automatically update when data updates remotely
 			.on('value', snapshot => {
 				dispatch({type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val()})
 			})

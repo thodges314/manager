@@ -12,6 +12,7 @@ class EmployeeCreate extends Component {
 	render () {
 		const {employeeUpdate, empName, shift, telephoneNumber} = this.props
 		const {onButtonPress} = this
+		console.log(this.props.employee)
 		return (
 			<Card>
 				<CardSection>

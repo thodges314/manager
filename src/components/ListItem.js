@@ -1,6 +1,7 @@
 import React from 'react'
-import {Text, TouchableWithoutFeedback} from 'react-native'
+import {Text, TouchableWithoutFeedback, View} from 'react-native'
 import {CardSection}from './common'
+import { Actions } from 'react-native-router-flux';
 
 const ListItem =({employee}) => {
 	const {empName} = employee.item
@@ -12,12 +13,16 @@ const ListItem =({employee}) => {
 		}
 	}
 
-	console.log(employee)
-
+	const onRowPress = () => Actions.employeeCreate({employee: employee.item})
+	
 	return (
-		<CardSection>
-			<Text style={styles.titleStyle}>{empName}</Text>
-		</CardSection>
+		<TouchableWithoutFeedback onPress={onRowPress}>
+			<View>
+				<CardSection>
+					<Text style={styles.titleStyle}>{empName}</Text>
+				</CardSection>
+			</View>
+		</TouchableWithoutFeedback>
 	)
 }
 
