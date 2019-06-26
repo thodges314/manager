@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Picker} from 'react-native'
+import {Picker, StyleSheet, Text, View} from 'react-native'
 import {employeeUpdate} from '../actions'
 import {Card, CardSection, Input, Button} from './common'
 
@@ -25,19 +25,23 @@ class EmployeeCreate extends Component {
 						value={telephoneNumber}
 					/>
 				</CardSection>
-				<CardSection>
-					<Picker
-						selectedValue={shift}
-						onValueChange={value => employeeUpdate({prop: 'shift', value})}
-					>
-						<Picker.item label="Monday" value="Monday" />
-						<Picker.item label="Tuesday" value="Tuesday" />
-						<Picker.item label="Wednesday" value="Wednesday" />
-						<Picker.item label="Thursday" value="Thursday" />
-						<Picker.item label="Friday" value="Friday" />
-						<Picker.item label="Saturday" value="Saturday" />
-						<Picker.item label="Sunday" value="Sunday" />
-					</Picker>
+				<CardSection style={{padding: 13}}>
+					<Text style={styles.pickerTextStyle}>Shift</Text>
+					<View style={{flex: 2, paddingLeft:85}}>
+						<Picker
+							style={{flex: 1}}
+							selectedValue={shift}
+							onValueChange={value => employeeUpdate({prop: 'shift', value})}
+						>
+							<Picker.item label="Monday" value="Monday" />
+							<Picker.item label="Tuesday" value="Tuesday" />
+							<Picker.item label="Wednesday" value="Wednesday" />
+							<Picker.item label="Thursday" value="Thursday" />
+							<Picker.item label="Friday" value="Friday" />
+							<Picker.item label="Saturday" value="Saturday" />
+							<Picker.item label="Sunday" value="Sunday" />
+						</Picker>
+					</View>
 				</CardSection>
 				<CardSection>
 					<Button>create</Button>
@@ -46,6 +50,13 @@ class EmployeeCreate extends Component {
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	pickerTextStyle: {
+		fontSize: 18,
+		paddingLeft: 20
+	}
+})
 
 const mapStateToProps = (state) => {
 	const{empName, telephoneNumber, shift} = state.employeeForm
