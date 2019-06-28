@@ -3,22 +3,24 @@ import {connect} from 'react-redux'
 import forEach from 'lodash/forEach'
 import {Card, CardSection, Button} from './common'
 import EmployeeForm from './EmployeeForm'
-import {employeeSet} from '../actions'
+import {employeeSet, employeeUpdate} from '../actions'
 
 class EmployeeEdit extends Component {
 	constructor(props) {
 		super(props)
 		const {employee, employeeSet} = props
+		// forEach(employee, (value, prop) => employeeUpdate({prop, value}))
 		employeeSet(employee)
 	}
 
 	onButtonPress= () => {
 		const {empName, shift, telephoneNumber} = this.props.employee
 	}
+
 	render() {
 		return(
 			<Card>
-				<EmployeeForm />
+				<EmployeeForm {...this.props}/>
 				<CardSection>
 					<Button onPress={this.onButtonPress}>
 						Save Changes
@@ -34,4 +36,4 @@ const mapStateToProps = state =>{
 	return {empName, shift, telephoneNumber}
 }
 
-export default connect(mapStateToProps, {employeeSet})(EmployeeEdit)
+export default connect(mapStateToProps, {employeeSet, employeeUpdate})(EmployeeEdit)
