@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Communications from 'react-native-communications'
 import {Card, CardSection, Button} from './common'
 import EmployeeForm from './EmployeeForm'
 import {employeeSave, employeeSet, employeeUpdate} from '../actions'
@@ -12,10 +13,15 @@ class EmployeeEdit extends Component {
 		console.log(this.props)
 	}
 
-	onButtonPress= () => {
+	onButtonPress = () => {
 		const {employeeSave, empName, shift, telephoneNumber} = this.props
 		const {uid} = this.props.employee
 		employeeSave({empName, shift, telephoneNumber, uid})
+	}
+
+	onSmsPress = () => {
+		const {telephoneNumber, shift} =  this.props
+		Communications.text(telephoneNumber, `Your upcoming shift is on ${shift}.`)
 	}
 
 	render() {
@@ -25,6 +31,16 @@ class EmployeeEdit extends Component {
 				<CardSection>
 					<Button onPress={this.onButtonPress}>
 						Save Changes
+					</Button>
+				</CardSection>
+				<CardSection>
+					<Button onPress={this.onSmsPress}>
+						SMS Employee
+					</Button>
+				</CardSection>
+				<CardSection>
+					<Button onPress={() => null}>
+						Sack Employee
 					</Button>
 				</CardSection>
 			</Card>
