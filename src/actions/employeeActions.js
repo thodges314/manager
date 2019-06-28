@@ -23,6 +23,18 @@ export const employeesFetch = () => {
 	}
 }
 
+export const employeeSave = ({empName, shift, telephoneNumber, uid})=> {
+	const {currentUser} = firebase.auth()
+	return (dispatch) => {
+		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`).set({empName, shift, telephoneNumber})
+		.then(() => {
+			console.log('SAVED!!')
+			// dispatch({type: EMPLOYEE_CREATE})
+			// Actions.employeeList({type: 'reset'})
+		})
+	}
+}
+
 export const employeeSet = (employee) => {
 	return {
 		type: EMPLOYEE_SET,
