@@ -13,7 +13,9 @@ const ListItem =({employee}) => {
 		}
 	}
 
-	const onRowPress = () => Actions.employeeCreate({employee: employee.item})
+	const onRowPress = () => {
+		Actions.employeeEdit({employee: employee.item})
+	}
 	
 	return (
 		<TouchableWithoutFeedback onPress={onRowPress}>
