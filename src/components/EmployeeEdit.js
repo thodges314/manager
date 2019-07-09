@@ -13,6 +13,10 @@ class EmployeeEdit extends Component {
 		employeeSet(employee)
 	}
 
+	onAccept = () => {
+
+	}
+
 	onButtonPress = () => {
 		const {employeeSave, empName, shift, telephoneNumber} = this.props
 		const {uid} = this.props.employee
@@ -20,7 +24,7 @@ class EmployeeEdit extends Component {
 	}
 
 	onSackEmployeePress = (prevState) => {
-		this.setState({showModal: !prevState.showModal})
+		this.setState({showModal: !this.state.showModal})
 	}
 
 	onSmsPress = () => {
@@ -30,25 +34,30 @@ class EmployeeEdit extends Component {
 
 	render() {
 		const {showModal} = this.state
+		const {onAccept, onButtonPress, onSackEmployeePress, onSmsPress} = this
 		return(
 			<Card>
 				<EmployeeForm {...this.props}/>
 				<CardSection>
-					<Button onPress={this.onButtonPress}>
+					<Button onPress={onButtonPress}>
 						Save Changes
 					</Button>
 				</CardSection>
 				<CardSection>
-					<Button onPress={this.onSmsPress}>
+					<Button onPress={onSmsPress}>
 						SMS Employee
 					</Button>
 				</CardSection>
 				<CardSection>
-					<Button onPress={this.onSackEmployeePress}>
+					<Button onPress={onSackEmployeePress}>
 						Sack Employee
 					</Button>
 				</CardSection>
-				<Confirm visible={showModal}>
+				<Confirm
+					onAccept={onAccept}
+					onDecline={onSackEmployeePress}
+					visible={showModal}
+				>
 					Are you sure that you want to sack this employee?
 				</Confirm>
 			</Card>
