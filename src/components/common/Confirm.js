@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Text, View} from 'react-native'
+import {Modal, StyleSheet, Text, View} from 'react-native'
 import {Button} from './Button'
 import {CardSection} from './CardSection'
 
@@ -8,7 +8,8 @@ const Confirm = ({
 	onAccept,
 	onDecline,
 	visible
-}) =>{
+}) => {
+	const {cardSectionStyle, containerStyle, textStyle} = styles
 	return (
 		<Modal
 			animationType='slide'
@@ -16,9 +17,9 @@ const Confirm = ({
 			transparent
 			visible={visible}
 		>
-			<View>
-				<CardSection>
-					<Text>{children}</Text>
+			<View style={containerStyle}>
+				<CardSection style={cardSectionStyle}>
+					<Text style={textStyle}>{children}</Text>
 				</CardSection>
 				<CardSection>
 					<Button onPress={onAccept}>Ok</Button>
@@ -30,17 +31,20 @@ const Confirm = ({
 }
 
 const styles = StyleSheet.create({
-	CardSection:{
+	cardSectionStyle:{
 		justifyContent: 'center'
 	},
-	Text: {
+	containerStyle: {
+		backgroundColor:'rgba(0, 0, 0, 0.75)',
+		position: 'relative',
+		flex: 1,
+		justifyContent: 'center'
+	},
+	textStyle: {
 		flex: 1,
 		fontSize: 18,
 		textAlign: 'center',
 		lineHeight: 40
-	},
-	Modal:{
-		backgroundColor: 'rgba(0,0,0,0.75)'
 	}
 })
 
