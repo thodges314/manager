@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Communications from 'react-native-communications'
 import {Button, Card, CardSection, Confirm} from './common'
 import EmployeeForm from './EmployeeForm'
-import {employeeSave, employeeSet, employeeUpdate} from '../actions'
+import {employeeSave, employeeDelete, employeeSet, employeeUpdate} from '../actions'
 
 class EmployeeEdit extends Component {
 	constructor(props) {
@@ -14,7 +14,9 @@ class EmployeeEdit extends Component {
 	}
 
 	onAccept = () => {
-
+		const {employeeDelete} = this.props
+		const {uid} = this.props.employee
+		employeeDelete({uid})
 	}
 
 	onButtonPress = () => {
@@ -71,6 +73,7 @@ const mapStateToProps = state =>{
 }
 
 const mapDispatchToProps = {
+	employeeDelete,
 	employeeSave,
 	employeeSet,
 	employeeUpdate
